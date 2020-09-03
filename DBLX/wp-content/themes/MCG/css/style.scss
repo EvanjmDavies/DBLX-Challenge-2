@@ -1,0 +1,743 @@
+
+
+// HELLO!
+// SASS is my go-to CSS preprocessor. You will notice that I often use displays like Flexbox & Grid to acheive my layouts as they will work very well responsively.
+// I usually use a few animations and hover effects to bring my work to life but I also believe subtlety is key and a fast website trumps all.
+
+
+
+// Font
+@font-face {
+  font-family: 'Gilroy';
+  src: url('../font/Gilroy-Light.otf');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('../font/Gilroy-Bold.otf');
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('../font/Gilroy-ExtraBold.otf');
+  font-weight: 900;
+}
+
+
+// SCSS Files
+@import 'variables';
+@import 'mixins';
+
+
+// Basic styles ///////////
+html, body {
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+  // On Menu Toggle
+  &.disable-scroll {
+    margin: 0;
+    height: 100%;
+    overflow: hidden
+  }
+}
+
+* {
+  transition:.25s ease-in-out;
+  box-sizing:border-box;
+}
+
+h1, h2, h3, h4, h5, p, a, button, li {
+  font-family: 'Gilroy';
+  font-style: normal;
+  color: $text;
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 2.7em;
+  font-weight: 800;
+  margin: 0;
+}
+
+h3 {
+  font-size: 1.45em;
+  font-weight: 300;
+  margin: 6px 0 60px 0;
+}
+
+h4 {
+  margin: 0;
+  font-size: 0.95em;
+}
+
+p {
+  font-weight: 300;
+}
+
+li {
+  list-style-type:none;
+}
+
+.t1 {
+  font-size: 0.6em;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.t2 {
+  font-size: 2.1em;
+  letter-spacing: 1px;
+  margin-left: 0px;
+}
+
+.t3 {
+  font-size: 0.9em;
+  letter-spacing: 0.5px;
+}
+
+.t4 {
+  font-size: 0.7em;
+  margin: 0 4px;
+}
+
+
+
+// Sections
+  // Page wrap
+.wrap {
+  padding: 20px 100px 0 100px;
+  height: 130vh;
+  position: relative;
+}
+
+// First page
+.about-page {
+  background-image: url('/DBLX/wp-content/themes/MCG/img/shutterstock_1347638966.jpg');
+  @include background-image;
+}
+
+// Second page
+.mission-page {
+  background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url('/DBLX/wp-content/themes/MCG/img/pexels-pixabay-22021  .jpg');
+  @include background-image;
+}
+
+
+// Third page
+.careers-page {
+  height: 100vh;
+  background-image: url('/DBLX/wp-content/themes/MCG/img/mcg-landing2.jpg');
+  @include background-image;
+}
+
+
+
+
+// Nav Bar ///////////
+#nav {
+  @include sidebar;
+  left: 0;
+  .container {
+    height: 100vh;
+    width: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+    justify-content: center;
+
+
+    // hamburger
+    #menu-container {
+      margin: -17px 0 0 -10px;
+      span {
+        display:block;
+        background:$text;
+        border-radius:2px;
+      }
+      #menu-toggle {
+        width:100px;
+        height:100px;
+        position:relative;
+        cursor:pointer;
+        border-radius:5px;
+        transform: scale(0.6);
+        &:hover {
+        transform: scale(0.65);
+        }
+        #hamburger {
+          position:absolute;
+          height:100%;
+          width:100%;
+          span {
+            width:45px;
+            height:3px;
+            position:relative;
+            top: 32px;
+            left:20px;
+            margin:10px 0;
+            &:nth-child(1){
+              transition-delay:.5s;
+            }
+            &:nth-child(2){
+              transition-delay:.625s;
+              width:35px;
+            }
+          }
+        }
+        #cross {
+          position:absolute;
+          height:100%;
+          width:100%;
+          transform:rotate(45deg);
+          span{
+            background: rgba(255, 255, 255, 0.7);
+            &:nth-child(1){
+              height:0%;
+              width:4px;
+              position:absolute;
+              top:10%;
+              left:48px;
+              transition-delay:0s;
+            }
+            &:nth-child(2){
+              width:0%;
+              height:4px;
+              position:absolute;
+              left:10%;
+              top:48px;
+              transition-delay:.25s;
+            }
+          }
+        }
+      }
+
+      #menu-toggle.open {
+        #hamburger {
+          span {
+            width:0%;
+            &:nth-child(1){
+              transition-delay:0s;
+            }
+            &:nth-child(2){
+              transition-delay:.125s;
+            }
+            &:nth-child(3){
+              transition-delay:.25s;
+            }
+          }
+        }
+        #cross {
+          span {
+            &:nth-child(1){
+              height:80%;
+              transition-delay:.625s;
+            }
+          }
+          span {
+            &:nth-child(2){
+              width:80%;
+              transition-delay:.375s;
+            }
+          }
+        }
+      }
+    }
+    .line {
+      display:inline-block;
+      height: 33px;
+      width: 1px;
+      border-left: solid 1px $text;
+      transform: translate(29px, 36px);
+    }
+    p {
+      @include vertical-text;
+      max-height: 130px;
+      text-align: right;
+      line-height: 20px;
+      padding-bottom: 20px;
+    }
+  }
+
+  // No Menu Toggle, Open full screen
+  &.nav-active {
+    transition: all 250ms ease-in-out;
+    background: $text;
+    width: 100vw;
+    z-index: 6;
+    transition-delay: 200ms;
+
+    display: grid;
+    grid-template-columns: 80px calc(100vw - 80px);
+    .container {
+      background: $text;
+    }
+    ul {
+      display: grid;
+      grid-template-rows: repeat(5, 1fr);
+      justify-content: center;
+      max-height: calc(100vh - 160px);
+      margin: 80px 80px 0 0;
+      padding-left: 0;
+      li {
+        text-align: center;
+        cursor: pointer;
+        &:hover a {
+          transition-delay: 0ms;
+          transition-property: opacity;
+          opacity: 0.9;
+        }
+        a {
+          font-size: 3em;
+          font-weight: 800;
+          color: #fff;
+          margin: 20px 0 0 0;
+          opacity: 0.5;
+          transition: all 150ms ease-in-out;
+        }
+      }
+    }
+  }
+  ul {
+    a {
+      opacity: 0;
+      transition-delay: 350ms;
+      transition-property: opacity;
+
+    }
+  }
+
+  // Dark mode
+  &.dark-mode-scroll {
+    border: solid 1px rgba(255, 255, 255, 0.1);
+    .container {
+      #menu-container {
+        span {
+          background-color: #fff!important;
+        }
+      }
+      .line {
+        border-left: solid 1px #fff;
+      }
+      p {
+        color: #fff;
+      }
+    }
+  }
+}
+
+
+// Right Sidebar ///////////
+#sidebar {
+  @include sidebar;
+  right: 0;
+  display: grid;
+  grid-template-rows: 50px auto 130px;
+  z-index: 7;
+
+  .wrapper {
+    @include flex-center;
+    flex-wrap: wrap;
+    p {
+      @include vertical-text;
+      text-align: center;
+    }
+    h4 {
+      padding-top: 20px;
+      @include hover-scale;
+    }
+    &:nth-child(1) {
+      align-items: flex-start;
+    }
+  }
+
+  // Social Icons
+  .socials {
+    padding: 20px 0;
+    svg {
+      margin: 0 20px;
+      width: 14px;
+      height: 14px;
+      @include hover-scale;
+      fill: $text;
+      &:hover {
+        fill: #000;
+      }
+    }
+  }
+
+  // Dark mode
+  &.dark-mode {
+  @include darkmode;
+  }
+  &.dark-mode-scroll {
+  @include darkmode;
+  }
+  &.mobile {
+    opacity: 1!important;
+  }
+}
+
+
+
+
+
+// Front Page //////////
+
+#site-logo {
+  width: 160px;
+  position: fixed;
+  z-index: 3;
+  fill: #222222;
+  &.dark-mode-scroll {
+    fill: #fff;
+  }
+}
+
+
+// Text Container
+.text-container {
+  display: flex;
+  align-items: center;
+  height: calc(100vh - 20px);
+  max-width: 500px;
+  padding: 0px 0px 0px 5.3vw;
+  .t4:nth-child(3) {
+    margin-right: 10px;
+  }
+  .line {
+    display:inline-block;
+    height: 1px;
+    width: 33px;
+    border-top: solid 1px $text;
+    transform: translateY(-3px);
+    &:nth-child(3) {
+      width: 15px;
+      border-top: solid 1px rgba(0, 0, 0, 0.4);
+    }
+  }
+  p {
+    display: inline-block;
+  }
+
+  // Animate Underline and SVG
+  .mcg-link {
+    &::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 1px;
+    margin-top: 5px;
+    background: rgba(0, 0, 0, 0.2);
+    transition: width .3s;
+    }
+  }
+  svg {
+    display: inline-block;
+    width: 16px;
+    transform: translate(0px, 5px);
+    margin-right: 8px;
+  }
+  a {
+    cursor:pointer;
+    &:hover {
+      svg {
+        animation: move 1s infinite;
+      }
+      p {
+        transform: translateX(3px) scale(1.05);
+        &::after {
+            width: 100%;
+        }
+      }
+    }
+  }
+}
+
+
+// Human Engagement Background
+.center-box {
+  @include absoulte-center;
+  border-left: solid 1px $grey;
+  border-right: solid 1px $grey;
+  width: 43%;
+
+  p {
+    position: absolute;
+    top: 0px;
+    z-index: 5;
+    transform: rotate(90deg);
+    font-size: 11.5em;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+
+    &:nth-child(1) {
+    right: -389px;
+    top: -78px;
+    }
+
+    &:nth-child(2) {
+      right: -440px;
+      top: 643px;
+    }
+  }
+}
+
+// Dark Mode
+.dark-text {
+  p, h1, h3 {
+    color: #fff!important;
+  }
+  svg {
+    fill: #fff;
+  }
+  .line {
+    border-top: solid 1px #fff;
+    &:nth-child(3) {
+      border-top: solid 1px rgba(255, 255, 255, 0.4);
+    }
+  }
+  .mcg-link {
+    &::after {
+    background: rgba(255, 255, 255, 0.7);
+    }
+  }
+}
+
+
+// Bottom Nav Menu
+.bottom-nav {
+  position: fixed;
+  z-index: 1;
+  bottom: 0;
+  right: 80px;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  width: 55%;
+  li {
+    border-bottom: solid 2px rgba(0, 0, 0, 0,);
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 170px;
+      height: 80px;
+      p {
+        color: $grey2;
+      }
+        .t1 {
+          width: 70px;
+          text-align: right;
+          margin-right: 5px;
+        }
+      }
+
+      // Mouse Hover Effect
+      &:hover {
+        border-bottom: solid 2px $text;
+        p {
+          color: $text;
+        }
+      }
+      &.active {
+        border-bottom: solid 2px $text;
+        p {
+          color: $text;
+      }
+    }
+  }
+
+  // Dark Mode
+  &.dark-mode-scroll {
+    li {
+      border-bottom: solid 2px rgba(0, 0, 0, 0);
+      a {
+        p {
+          color: rgba(255, 255, 255, 0.6);
+        }
+      }
+      &:hover {
+        border-color: #fff;
+        p {
+          color: #fff;
+        }
+      }
+      &.active {
+        border-color: #fff;
+        p {
+          color: #fff;
+      }
+    }
+    }
+  }
+}
+
+
+// KeyFrames
+
+// Arrow animation
+@keyframes move {
+  0%,100% {
+    transform: translate(0px, 5px);
+  }
+  50% {
+    transform: translate(7px, 5px);
+  }
+}
+
+
+
+// Media Queries
+// I try to use as little media queries as I can. Clean and effective code should use CSS that can adjust to all screen sizes. But of course that's not to say I don't use them...
+
+@media screen and (max-width: 1400px) {
+
+}
+
+
+@media screen and (max-width: 1024px) {
+  #sidebar {
+    background-color: rgba(0, 0, 0, 0.6);
+    .wrapper {
+      p, h4 {
+        color: #fff;
+      }
+      svg {
+        fill: #fff;
+      }
+    }
+  }
+  .bottom-nav {
+    width: auto;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .center-box {
+      left: 100px;
+      width: 300px;
+  }
+}
+
+@media screen and (max-width: 810px) {
+  .center-box {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 670px) {
+  .bottom-nav {
+    z-index: 5;
+    top: 0;
+    left: 0;
+    bottom: auto;
+    right: auto;
+    margin: auto;
+    align-content: space-around;
+    flex-wrap: wrap;
+    width: 80px;
+    height: 60vh;
+    margin: 100px 0 0 0;
+    padding: 0;
+    li {
+      border-bottom: none;
+      border-right: solid 1px rgba(0, 0, 0, 0,);
+      width: 80px;
+      height: 80px;
+      a {
+        justify-content: right;
+        flex-wrap: wrap;
+        width: 80px;
+        height: 80px;
+        div {
+          width: 80px;
+          text-align: right;
+        }
+          .t2 {
+            font-size: 1.4em;
+            margin: 0 10px 0 0;
+          }
+        }
+        &:hover {
+          border-right: solid 1px $text;
+          border-bottom: none;
+        }
+        &.active {
+          border-right: solid 1px $text;
+          border-bottom: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .about-page, .mission-page, .careers-page {
+    background-size: auto 100vh;
+    background-position: 10%;
+  }
+  h1 {
+    font-size: 2.4em;
+  }
+  h3 {
+    font-size: 1.2em;
+  }
+  .bottom-nav li a {
+    justify-content: flex-end!important;
+    div {
+      width: 74px;
+      p {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 580px) {
+  // Right Sidebar ///////////
+  #sidebar {
+    opacity: 0;
+  }
+}
+
+
+@media screen and (max-width: 500px) {
+
+  // Nav
+#nav {
+    ul {
+      margin: 40px 80px 0 0!important;
+      padding: 40px 0;
+      a {
+        font-size: 2.4em!important;
+      }
+    }
+  }
+
+  // Right Sidebar ///////////
+  .about-page, .mission-page, .careers-page {
+    background-size: auto 100vh;
+    background-position: 18%;
+  }
+  h1 {
+    font-size: 2.1em;
+  }
+  h3 {
+    font-size: 1.2em;
+  }
+  .text-container {
+    padding: 0px 0px 0px 0px;
+  }
+}
+
+
+@media screen and (max-width: 450px) {
+  // Page wrap
+  .wrap {
+    padding: 20px 50px 0 100px;
+  }
+}

@@ -1,0 +1,62 @@
+@mixin sidebar {
+  width: 80px;
+  height: 100vh;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  border: solid 1px rgba(0, 0, 0, 0.1);
+}
+
+@mixin absoulte-center {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+}
+
+@mixin max {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin hover-scale {
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+@mixin vertical-text {
+  -webkit-writing-mode: vertical-lr;
+  -ms-writing-mode: tb-lr;
+  writing-mode: vertical-lr;
+  text-transform: uppercase;
+  margin: 0 auto;
+}
+
+@mixin background-image {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: left top;
+  background-attachment: fixed;
+}
+
+@mixin darkmode {
+  background-color: rgba(0, 0, 0, 0.6);
+  .wrapper {
+    p, h4 {
+      color: #fff;
+    }
+    svg {
+      fill: #fff;
+    }
+  }
+}
